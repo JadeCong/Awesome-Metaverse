@@ -19,65 +19,65 @@
 > 目前的物理引擎有Havok，PhysX，Bullet，ODE，Newton，Vortex，MuJoCo，DART等。但是从开源程度，功能完善性，对柔性体、粒子系统的模拟仿真，计算实时性等方面，PhysX和Bullet有比较优势，且Unreal  Engine 4/5 都使用PhysX/Chaos（PhysX的替代方案）作为底层运行的物理引擎。
 >
 > **Goal：** 工业元宇宙平台能够配置选择多种物理引擎，多种求解器，以适应不同的仿真精度和仿真速度的要求。<br>
-> **Reference：** https://github.com/JadeCong/Awesome-Robot-Learning
+> **Reference：** <https://github.com/JadeCong/Awesome-Robot-Learning>
 
 ### 1.2 仿真平台
 
 > 通过调研发现现在从学术界到工业界呈现出不同的定位需求，学术界主要考虑仿真平台的轻量化、易用性及低成本开发需求，代表的仿真平台有ROS/ROS2，Robosuite，RaiSim，CoppeliaSim，Gazebo等；工业界主要考虑仿真平台的通用性、拓展性、大规模及实时性的需求，代表的仿真平台有Nvidia Omniverse，CARLA，ROS2等。根据我们构建工业元宇宙平台的需求（通用性，拓展性及规模化），通过全面对比，我们初步选定仿真平台如下：Nvidia Omniverse，CARLA，Robosuite这三个仿真平台，通过详细深入使用，最后确定最终的工业元宇宙平台。
 >
 > **Goal：** 通过对通用性、兼容性，用户友好性，开发难度等多方面对比，最终确定适合构建工业元宇宙的仿真平台。<br>
-> **Reference：** https://github.com/JadeCong/Awesome-Robot-Learning
+> **Reference：** <https://github.com/JadeCong/Awesome-Robot-Learning>
 
 #### （1）Nvidia Omniverse
 
 > NVIDIA Omniverse是一款基于PhysX为物理引擎，Pixar的USD为模型描述文件开发的一个仿真平台，其作用类似一个中间件，连接物理渲染引擎和各大终端应用，因此其具备强大的拓展性，同时NVIDIA为其开发了多种插件和应用场景资源，并配合其GPU硬件设备做了诸多优化。因此，NVIDIA Omniverse作为我们工业元宇宙平台的首选。
 >
 > **Reference：**<br>
-（1）https://docs.omniverse.nvidia.com/<br>
-（2）https://docs.omniverse.nvidia.com/app_isaacsim/app_isaacsim/overview.html<br>
-（3）https://docs.omniverse.nvidia.com/kit/docs/kit-extension-template-cpp/latest/index.html
+（1）<https://docs.omniverse.nvidia.com/><br>
+（2）<https://docs.omniverse.nvidia.com/app_isaacsim/app_isaacsim/overview.html><br>
+（3）<https://docs.omniverse.nvidia.com/kit/docs/kit-extension-template-cpp/latest/index.html>
 
 #### （2）CARLA
 
 > CARLA是一款开源软件，其基于Chrono（一种开源的、多物理仿真引擎，可使用基于模板的方法提供高逼真度的车辆动力学仿真）为物理引擎，Unreal Engine作为渲染引擎，由于其开源并具有大量的自动驾驶场景的模型实例，同时Unreal Eninge能高速渲染出更真实的数据，开放出C++和Python接口便于拓展开发。因此，CARLA可作为工业元宇宙平台的次选。
 >
 > **Reference：**<br>
-（1）https://carla.org/<br>
-（2）https://github.com/carla-simulator/carla<br>
-（3）https://carla.readthedocs.io/en/latest/
+（1）<https://carla.org/><br>
+（2）<https://github.com/carla-simulator/carla><br>
+（3）<https://carla.readthedocs.io/en/latest/>
 
 #### （3）Robosuite
 
 > Robosuite是一款开源软件，其基于MuJoCo（一种通用的多关节的接触碰撞物理引擎，其应用在机器人、生物力学、动画仿真、机器学习等多领域）作为物理引擎，引擎具有高精度、轻量化、实时性好等特点，其采用MJCF（一种类似xml的可读性文件）作为模型描述文件，能够实现对多对象、柔性体等进行交互仿真，并能实现高质量的渲染，另外Robosuite在MuJoCo引擎采用C/C++的基础上开放出Python接口，便于拓展开发。因此，Robosuite可作为工业元宇宙平台的备选。
 >
 > **Reference：**<br>
-（1）https://robosuite.ai/<br>
-（2）https://mujoco.org/
+（1）<https://robosuite.ai/><br>
+（2）<https://mujoco.org/>
 
 #### （4）仿真平台搭建
 
 ##### 1. 系统环境构建
 
-> 首先，在构建仿真平台之前，我们需要统一系统开发环境，上述三款仿真平台均支持Ubuntu和Windows两种系统，但NVIDIA Omniverse(https://docs.omniverse.nvidia.com/app_isaacsim/app_isaacsim/requirements.html)对操作系统提出一定要求，同时考虑到后期与其他软件的配合开发的拓展性以及用于机器学习的场景，我们暂时统一系统环境为Ubuntu 22.04/20.04 LTS，另外系统主机要满足上面链接中的物理硬件要求，然后通过官方系统镜像进行安装系统即可。
+> 首先，在构建仿真平台之前，我们需要统一系统开发环境，上述三款仿真平台均支持Ubuntu和Windows两种系统，但NVIDIA Omniverse(<https://docs.omniverse.nvidia.com/app_isaacsim/app_isaacsim/requirements.html>)对操作系统提出一定要求，同时考虑到后期与其他软件的配合开发的拓展性以及用于机器学习的场景，我们暂时统一系统环境为Ubuntu 22.04/20.04 LTS，另外系统主机要满足上面链接中的物理硬件要求，然后通过官方系统镜像进行安装系统即可。
 >
 > **Reference：** [Windows and Ubuntu Installation.md](https://gist.github.com/JadeCong/a5c09386a8ea30881540996498ed54b1#file-windows-and-ubuntu-installation-md)
 
 ##### 2. 仿真平台的安装与配置
 
 >- **Nvidia Omniverse**<br>
-> 在安装好Ubuntu操作系统之后，依据Omniverse官方安装文档(https://docs.omniverse.nvidia.com/app_isaacsim/app_isaacsim/install_workstation.html)进行安装软件即可。如遇到问题，可参考下面参考链接进行重新安装配置驱动和软件启动选项配置。
+> 在安装好Ubuntu操作系统之后，依据Omniverse官方安装文档(<https://docs.omniverse.nvidia.com/app_isaacsim/app_isaacsim/install_workstation.html>)进行安装软件即可。如遇到问题，可参考下面参考链接进行重新安装配置驱动和软件启动选项配置。
 >
->> **Reference：**
->> (1) [Ubuntu Nvidia Configuration.md](https://gist.github.com/JadeCong/a5c09386a8ea30881540996498ed54b1#file-ubuntu-nvidia-configuration-md)
+>> **Reference：**<br>
+>> (1) [Ubuntu Nvidia Configuration.md](https://gist.github.com/JadeCong/a5c09386a8ea30881540996498ed54b1#file-ubuntu-nvidia-configuration-md)<br>
 >> (2) [Ubuntu Nvidia Omniverse.md](https://gist.github.com/JadeCong/215157de3c6f25f2277caae8fa50c947#file-ubuntu-nvidia-omniverse-md)
 >
 >- **CARLA**<br>
-> 在安装好Ubuntu操作系统之后，依据CARLA官方安装文档(https://carla.readthedocs.io/en/latest/start_quickstart/)进行安装软件即可。如遇到问题，可参考下面参考链接进行配置软件依赖。
+> 在安装好Ubuntu操作系统之后，依据CARLA官方安装文档(<https://carla.readthedocs.io/en/latest/start_quickstart/>)进行安装软件即可。如遇到问题，可参考下面参考链接进行配置软件依赖。
 >
 >> **Reference：**[Ubuntu CARLA Simulator.md](https://gist.github.com/JadeCong/215157de3c6f25f2277caae8fa50c947#file-ubuntu-carla-simulator-md)
 >
 >- **Robosuite**<br>
-> 在安装好Ubuntu操作系统之后，依据Robosuite官方安装文档(https://robosuite.ai/docs/installation.html)进行安装软件即可。
+> 在安装好Ubuntu操作系统之后，依据Robosuite官方安装文档(<https://robosuite.ai/docs/installation.html>)进行安装软件即可。
 
 ### 1.3 建模方法
 
@@ -125,7 +125,7 @@
 > 在更大的生产场景中，不同的工作及生产阶段对场景的构建也不同，需要通过组合的方式来完成对整个生产的流程化建模，因此平台需要能够实现对不同场景的融合和链接，从而完成对某一工作场景的全生命周期的高效建模。
 >
 > **Goal：** 工业元宇宙平台能够根据用户需求层次对用户场景进行高效的精准的自动化建模。<br>
-> **Reference：** https://zhuanlan.zhihu.com/p/606321816
+> **Reference：** <https://zhuanlan.zhihu.com/p/606321816>
 
 ### 1.4 数据流接口
 
@@ -138,39 +138,38 @@
 #### （1）Omniverse微服务架构简介
 
 > Nvidia Omniverse Microservices有如下特点：
-（1）模块化，易组合；
-（2）容易构建，本地使用；
-（3）能够大规模运行；
-（4）能够实现用例的大量变种；
+- （1）模块化，易组合；
+- （2）容易构建，本地使用；
+- （3）能够大规模运行；
+- （4）能够实现用例的大量变种；
 > Nvidia Omniverse Microservices平台的架构如下：<br>
 > ![Omniverse_Microservices](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/Omniverse_Microservices.png)<br>
->
+
 > Nvidia Omniverse Microservices平台有如下名词：
-（1）Routers：节点管理器，用于管理微服务注册
-（2）Facilities：基础设施，如数据库管理，衡量指标，安全授权，进度管理
-（3）Endpoints：端点为服务在网络中的节点
-（4）Transports：微服务核心与客户端之间的通讯方式
-（5）Metrics：衡量指标
-（6）Clients：同微服务通讯访问的客户端
-（7）OpenAPI：将微服务封装后给应用来调用
-（8）Apps：大型应用集合了多种微服务，如Farm Agent，Farm Queue
+- （1）Routers：节点管理器，用于管理微服务注册
+- （2）Facilities：基础设施，如数据库管理，衡量指标，安全授权，进度管理
+- （3）Endpoints：端点为服务在网络中的节点
+- （4）Transports：微服务核心与客户端之间的通讯方式
+- （5）Metrics：衡量指标
+- （6）Clients：同微服务通讯访问的客户端
+- （7）OpenAPI：将微服务封装后给应用来调用
+- （8）Apps：大型应用集合了多种微服务，如Farm Agent，Farm Queue
 
 #### （2）仿真平台的微服务架构设计
 
 > 当前，随着社会活动和企业业务的增加，主流的商业实体都会构建自己的云平台（公有云/私有云），云服务也成为支撑公司的庞大的研发和运营的基础。为面向企业的应用场景和业务，云服务衍生出多种形态XaaS，其表示针对任何...aaS的解决方案。目前，比较常用的流行的云服务有：
-  IaaS(Infrastructure as a Service)：基础架构即服务，用于构建云平台的基础设施，如云端虚拟机；
-  PaaS(Platform as a Service)：平台即服务，用于构建云平台而提供的托管环境；
-  CaaS(Container as a Service)：容器即服务，用于解决平台虚拟化的缺点问题；
-  SaaS(Software as a Service)：软件即服务，用于托管运行维护自己的应用程序；
-  FaaS(Function as a Service)：功能即服务，用于基于事件的结构化服务；
-  DaaS(Data as a Service)：数据即服务，用于获取和返回大量的数据；
-  DBaaS(Database as a Service)：数据库即服务，用于存储即管理大量的数据；
-  LaaS(License as a Service)：许可即服务，用于软件的安全性、加密、授权和许可。
->
-> **Reference：**
-<https://brainhub.eu/library/cloud-architecture-saas-faas-xaas>
-<https://medium.com/geekculture/the-comprehensive-concept-of-iaas-paas-saas-aaas-baas-faas-daas-staas-caas-naas-dbaas-14145d4f93c4>
-<https://zhuanlan.zhihu.com/p/422940645>
+- IaaS(Infrastructure as a Service)：基础架构即服务，用于构建云平台的基础设施，如云端虚拟机；
+- PaaS(Platform as a Service)：平台即服务，用于构建云平台而提供的托管环境；
+- CaaS(Container as a Service)：容器即服务，用于解决平台虚拟化的缺点问题；
+- SaaS(Software as a Service)：软件即服务，用于托管运行维护自己的应用程序；
+- FaaS(Function as a Service)：功能即服务，用于基于事件的结构化服务；
+- DaaS(Data as a Service)：数据即服务，用于获取和返回大量的数据；
+- DBaaS(Database as a Service)：数据库即服务，用于存储即管理大量的数据；
+- LaaS(License as a Service)：许可即服务，用于软件的安全性、加密、授权和许可。
+> **Reference：**<br>
+(1) <https://brainhub.eu/library/cloud-architecture-saas-faas-xaas><br>
+(2) <https://medium.com/geekculture/the-comprehensive-concept-of-iaas-paas-saas-aaas-baas-faas-daas-staas-caas-naas-dbaas-14145d4f93c4><br>
+(3) <https://zhuanlan.zhihu.com/p/422940645><br>
 >
 > 当前，Omniverse平台的服务化是基于Kit开发的一套微服务架构，用户可通过Service Extension开发自己的服务组件，从而构建自己的应用场景平台，然后可以将平台部署在云端或者本地服务器上以供公司成员和客户进行使用，同时研发人员可更新服务组件以实现升级服务功能。基于上述拟定的功能模块，我们可用到的云服务有IaaS、PaaS、SaaS、FaaS、DaaS、DBaaS、LaaS，然后基于Omniverse微服务架构的服务化功能模块如下图所示。<br>
 > ![Intelligent_Testing_Platform](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/Intelligent_Testing_Platform.png)<br>
@@ -211,13 +210,13 @@
 下面逐一介绍Omniverse平台的五大部分：
 >
 > **Reference：**<br>
-<https://www.nvidia.com/en-us/omniverse/><br>
-<https://www.nvidia.cn/omniverse/><br>
-<https://docs.omniverse.nvidia.com/><br>
-<https://developer.nvidia.com/omniverse/get-started><br>
-<https://www.nvidia.cn/omniverse/community/><br>
-[Nvidia Learning Resources.md](<https://gist.github.com/JadeCong/215157de3c6f25f2277caae8fa50c947#file-nvidia-learning-resources-md>)<br>
-[Ubuntu Nvidia Omniverse.md](<https://gist.github.com/JadeCong/215157de3c6f25f2277caae8fa50c947#file-ubuntu-nvidia-omniverse-md>)<br>
+(1) <https://www.nvidia.com/en-us/omniverse/><br>
+(2) <https://www.nvidia.cn/omniverse/><br>
+(3) <https://docs.omniverse.nvidia.com/><br>
+(4) <https://developer.nvidia.com/omniverse/get-started><br>
+(5) <https://www.nvidia.cn/omniverse/community/><br>
+(6) [Nvidia Learning Resources.md](<https://gist.github.com/JadeCong/215157de3c6f25f2277caae8fa50c947#file-nvidia-learning-resources-md>)<br>
+(7) [Ubuntu Nvidia Omniverse.md](<https://gist.github.com/JadeCong/215157de3c6f25f2277caae8fa50c947#file-ubuntu-nvidia-omniverse-md>)<br>
 
 ### 2.1 硬件资源
 
@@ -245,13 +244,13 @@
 > ![Nvidia_OVX_3](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/Nvidia_OVX_3.png)<br>
 >
 > **Reference：**<br>
-<https://docs.omniverse.nvidia.com/materials-and-rendering/latest/common/technical-requirements.html><br>
-<https://www.nvidia.cn/omniverse/enterprise/support/><br>
-<https://www.nvidia.cn/omniverse/cloud/><br>
-<https://www.nvidia.cn/geforce/><br>
-<https://www.nvidia.cn/design-visualization/><br>
-<https://www.nvidia.cn/geforce/graphics-cards/40-series/><br>
-<https://www.nvidia.cn/data-center/products/ovx/><br>
+(1) <https://docs.omniverse.nvidia.com/materials-and-rendering/latest/common/technical-requirements.html><br>
+(2) <https://www.nvidia.cn/omniverse/enterprise/support/><br>
+(3) <https://www.nvidia.cn/omniverse/cloud/><br>
+(4) <https://www.nvidia.cn/geforce/><br>
+(5) <https://www.nvidia.cn/design-visualization/><br>
+(6) <https://www.nvidia.cn/geforce/graphics-cards/40-series/><br>
+(7) <https://www.nvidia.cn/data-center/products/ovx/><br>
 
 ### 2.2 核心技术
 
@@ -266,10 +265,10 @@
 > ![OpenUSD_5](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/OpenUSD_5.png)<br>
 >
 > **Reference：**<br>
-<https://www.nvidia.cn/omniverse/usd/><br>
-<https://docs.omniverse.nvidia.com/usd/latest/index.html><br>
-<https://aousd.org/><br>
-<https://www.youtube.com/watch?v=-iCUjNk2aiA&ab_channel=NVIDIADeveloper><br>
+(1) <https://www.nvidia.cn/omniverse/usd/><br>
+(2) <https://docs.omniverse.nvidia.com/usd/latest/index.html><br>
+(3) <https://aousd.org/><br>
+(4) <https://www.youtube.com/watch?v=-iCUjNk2aiA&ab_channel=NVIDIADeveloper><br>
 >
 > （2）MDL
 >
@@ -281,10 +280,10 @@
 > ![MDL_4](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/MDL_4.png)<br>
 >
 > **Reference：**<br>
-<https://www.nvidia.cn/design-visualization/technologies/material-definition-language/><br>
-<https://developer.nvidia.com/rendering-technologies/mdl-sdk><br>
-<https://www.nvidia.cn/design-visualization/technologies/vmaterials/><br>
-<https://forums.developer.nvidia.com/c/gaming-and-visualization-technologies/visualization/vmaterials/168><br>
+(1) <https://www.nvidia.cn/design-visualization/technologies/material-definition-language/><br>
+(2) <https://developer.nvidia.com/rendering-technologies/mdl-sdk><br>
+(3) <https://www.nvidia.cn/design-visualization/technologies/vmaterials/><br>
+(4) <https://forums.developer.nvidia.com/c/gaming-and-visualization-technologies/visualization/vmaterials/168><br>
 >
 > （3）RTX
 >
@@ -295,9 +294,9 @@
 > ![RTX_3](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/RTX_3.png)<br>
 >
 > **Reference：**<br>
-<https://www.nvidia.cn/design-visualization/technologies/rtx/><br>
-<https://developer.nvidia.com/rtx><br>
-<https://www.nvidia.cn/design-visualization/><br>
+(1) <https://www.nvidia.cn/design-visualization/technologies/rtx/><br>
+(2) <https://developer.nvidia.com/rtx><br>
+(3) <https://www.nvidia.cn/design-visualization/><br>
 >
 > （4）PhysX/Blast/Flow/FleX
 >
@@ -314,9 +313,9 @@
 > ![PhysX_6](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/PhysX_6.png)<br>
 >
 > **Reference：**<br>
-<https://developer.nvidia.cn/physx-sdk><br>
-<https://developer.nvidia.cn/flex><br>
-<https://www.nvidia.cn/on-demand/playlist/playList-6e74e1e6-55be-4e6b-aee4-9a53715e70fc/><br>
+(1) <https://developer.nvidia.cn/physx-sdk><br>
+(2) <https://developer.nvidia.cn/flex><br>
+(3) <https://www.nvidia.cn/on-demand/playlist/playList-6e74e1e6-55be-4e6b-aee4-9a53715e70fc/><br>
 
 ### 2.3 生态系统
 
@@ -328,8 +327,8 @@
 > ![Ecosystem_3](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/Ecosystem_3.png)<br>
 >
 > **Reference：**<br>
-<https://www.nvidia.cn/omniverse/ecosystem/><br>
-<https://docs.omniverse.nvidia.com/connect/latest/index.html><br>
+(1) <https://www.nvidia.cn/omniverse/ecosystem/><br>
+(2) <https://docs.omniverse.nvidia.com/connect/latest/index.html><br>
 
 ### 2.4 基础应用
 
@@ -338,8 +337,8 @@
 > ![Basic_Apps](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/Basic_Apps.png)<br>
 >
 > **Reference：**<br>
-<https://docs.omniverse.nvidia.com/index.html><br>
-[Nvidia Learning Resources.md](https://gist.github.com/JadeCong/215157de3c6f25f2277caae8fa50c947#file-nvidia-learning-resources-md)<br>
+(1) <https://docs.omniverse.nvidia.com/index.html><br>
+(2) [Nvidia Learning Resources.md](https://gist.github.com/JadeCong/215157de3c6f25f2277caae8fa50c947#file-nvidia-learning-resources-md)<br>
 >
 > （1）USD Presenter
 >
@@ -352,8 +351,8 @@
 > ![USD_Presenter](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/USD_Presenter.png)<br>
 >
 > **Reference：**<br>
-<https://docs.omniverse.nvidia.com/usdview/latest/index.html><br>
-<https://docs.omniverse.nvidia.com/presenter/latest/index.html><br>
+(1) <https://docs.omniverse.nvidia.com/usdview/latest/index.html><br>
+(2) <https://docs.omniverse.nvidia.com/presenter/latest/index.html><br>
 >
 > （2）USD Explorer
 >
@@ -401,8 +400,8 @@
 > ![Isaac_Sim_3](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/Isaac_Sim_3.png)<br>
 >
 > **Reference：**<br>
-<https://docs.omniverse.nvidia.com/isaacsim/latest/index.html><br>
-[Ubuntu Nvidia Omniverse.md](https://gist.github.com/JadeCong/215157de3c6f25f2277caae8fa50c947#file-ubuntu-nvidia-omniverse-md)<br>
+(1) <https://docs.omniverse.nvidia.com/isaacsim/latest/index.html><br>
+(2) [Ubuntu Nvidia Omniverse.md](https://gist.github.com/JadeCong/215157de3c6f25f2277caae8fa50c947#file-ubuntu-nvidia-omniverse-md)<br>
 >
 > （7）Drive Sim
 >
@@ -421,8 +420,8 @@
 > ![Drive_Sim_8](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/Drive_Sim_8.png)<br>
 >
 > **Reference：**<br>
-<https://www.nvidia.com/en-sg/self-driving-cars/simulation/><br>
-<https://developer.nvidia.com/drive/simulation><br>
+(1) <https://www.nvidia.com/en-sg/self-driving-cars/simulation/><br>
+(2) <https://developer.nvidia.com/drive/simulation><br>
 >
 > （8）Omniverse Streaming Client
 >
@@ -466,9 +465,9 @@
 > ![Omniverse_Cloud_5](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/Omniverse_Cloud_5.png)<br>
 >
 > **Reference：**<br>
-<https://www.nvidia.com/en-us/omniverse/download/><br>
-<https://www.nvidia.cn/omniverse/cloud/><br>
-<https://www.nvidia.cn/omniverse/enterprise/support/><br>
+(1) <https://www.nvidia.com/en-us/omniverse/download/><br>
+(2) <https://www.nvidia.cn/omniverse/cloud/><br>
+(3) <https://www.nvidia.cn/omniverse/enterprise/support/><br>
 
 ### 2.6 开发者路径
 
@@ -496,13 +495,13 @@ Connectors：将第三方应用程序桥接到 Omniverse 的连接器。
 > ![Omniverse_Developer_5](https://github.com/JadeCong/Resources/blob/master/Pictures/Doc_Images/Gist/Omniverse_Developer_5.png)<br>
 >
 > **Reference：**<br>
-<https://developer.nvidia.com/omniverse><br>
-<https://developer.nvidia.com/omniverse/get-started/><br>
-<https://docs.omniverse.nvidia.com/dev-guide/latest/developer_api.html><br>
-<https://docs.omniverse.nvidia.com/install-guide/latest/overview.html><br>
-<https://docs.omniverse.nvidia.com/workflows/latest/index.html><br>
-<https://docs.omniverse.nvidia.com/platform/latest/overview.html><br>
-[Omniverse Learning Resources.md](https://gist.github.com/JadeCong/215157de3c6f25f2277caae8fa50c947#file-nvidia-learning-resources-md)<br>
+(1) <https://developer.nvidia.com/omniverse><br>
+(2) <https://developer.nvidia.com/omniverse/get-started/><br>
+(3) <https://docs.omniverse.nvidia.com/dev-guide/latest/developer_api.html><br>
+(4) <https://docs.omniverse.nvidia.com/install-guide/latest/overview.html><br>
+(5) <https://docs.omniverse.nvidia.com/workflows/latest/index.html><br>
+(6) <https://docs.omniverse.nvidia.com/platform/latest/overview.html><br>
+(7) [Omniverse Learning Resources.md](https://gist.github.com/JadeCong/215157de3c6f25f2277caae8fa50c947#file-nvidia-learning-resources-md)<br>
 
 ---
 
@@ -592,13 +591,16 @@ Connectors：将第三方应用程序桥接到 Omniverse 的连接器。
 >>
 >>- 2.2.1 Kit Python Extension Template
 >>
->> Python扩展OmniGraph Node：<https://docs.omniverse.nvidia.com/isaacsim/latest/advanced_tutorials/tutorial_advanced_omnigraph_custom_python_nodes.html>
-<https://docs.omniverse.nvidia.com/extensions/latest/ext_omnigraph.html>
+>> Python扩展OmniGraph Node：<br>
+<https://docs.omniverse.nvidia.com/isaacsim/latest/advanced_tutorials/tutorial_advanced_omnigraph_custom_python_nodes.html><br>
+<https://docs.omniverse.nvidia.com/extensions/latest/ext_omnigraph.html><br>
 >>
->> Python扩展教程：<https://docs.omniverse.nvidia.com/kit/docs/kit-manual/latest/guide/extensions_basic.html>
-<https://docs.omniverse.nvidia.com/kit/docs/kit-manual/latest/guide/extensions_advanced.html>
+>> Python扩展教程：<br>
+<https://docs.omniverse.nvidia.com/kit/docs/kit-manual/latest/guide/extensions_basic.html><br>
+<https://docs.omniverse.nvidia.com/kit/docs/kit-manual/latest/guide/extensions_advanced.html><br>
 >>
->> 测试Python扩展：<https://docs.omniverse.nvidia.com/kit/docs/kit-manual/latest/guide/testing_exts_python.html>
+>> 测试Python扩展：<br>
+<https://docs.omniverse.nvidia.com/kit/docs/kit-manual/latest/guide/testing_exts_python.html><br>
 >>
 >>- 2.2.2 Kit C++ Extension Template
 >>
@@ -627,193 +629,194 @@ Connectors：将第三方应用程序桥接到 Omniverse 的连接器。
 
 ### 3.2 Nvidia Docs Center
 
-1. Nvidia官方文档中心
+1. Nvidia官方文档中心<br>
 该网址包含了Nvidia所有的文档（主要是面向各种软件的基础学习文档）：<https://docs.nvidia.com/>
 
-2. Nvidia Omniverse官方文档
+2. Nvidia Omniverse官方文档<br>
 该网址包含了所有的Omnivese的相关基础文档：<https://docs.omniverse.nvidia.com/index.html>
 
-3. Nvidia Omniverse Platform官方文档
+3. Nvidia Omniverse Platform官方文档<br>
 Omniverse USD（用于描述Omniverse场景及其他仿真内容）：<https://docs.omniverse.nvidia.com/usd/latest/index.html>
-<https://www.nvidia.com/en-us/omniverse/usd/>（Universal Scene Description专题介绍）
-Omniverse Nucleus（用于Omniverse数据库及协作共享）：<https://docs.omniverse.nvidia.com/nucleus/latest/index.html>
+<https://www.nvidia.com/en-us/omniverse/usd/>（Universal Scene Description专题介绍）<br>
+Omniverse Nucleus（用于Omniverse数据库及协作共享）：<https://docs.omniverse.nvidia.com/nucleus/latest/index.html><br>
 Omniverse Extensions（用于基于Kit的扩展应用开发）：<https://docs.omniverse.nvidia.com/extensions/latest/index.html>
-<https://docs.omniverse.nvidia.com/kit/docs/kit-extension-template-cpp/latest/index.html> (Kit C++ Extension Template)
-Omniverse Kit（用于开发Omniverse基础应用的开发工具包/库）：
-<https://docs.omniverse.nvidia.com/dev-guide/latest/kit-architecture.html>
-<https://docs.omniverse.nvidia.com/kit/docs/kit-manual/latest/guide/kit_overview.html>
-<https://docs.omniverse.nvidia.com/kit/docs/kit-sdk/105.0.2/index.html>
-<https://docs.omniverse.nvidia.com/kit/docs/point-cloud-import/latest/build_tools.html>（Omniverse基于Kit开发的编译工具）
+<https://docs.omniverse.nvidia.com/kit/docs/kit-extension-template-cpp/latest/index.html> (Kit C++ Extension Template)<br>
+Omniverse Kit（用于开发Omniverse基础应用的开发工具包/库）：<br>
+<https://docs.omniverse.nvidia.com/dev-guide/latest/kit-architecture.html><br>
+<https://docs.omniverse.nvidia.com/kit/docs/kit-manual/latest/guide/kit_overview.html><br>
+<https://docs.omniverse.nvidia.com/kit/docs/kit-sdk/105.0.2/index.html><br>
+<https://docs.omniverse.nvidia.com/kit/docs/point-cloud-import/latest/build_tools.html>（Omniverse基于Kit开发的编译工具）<br>
 Omniverse Connect（用于连接Omniverse平台和其他的应用程序）：<https://docs.omniverse.nvidia.com/connect/latest/index.html>
 
-4. Nvidia Omniverse Foundation Applications官方文档
-Omniverse Isaac Sim（该网址包含了所有Isaac Sim仿真的相关基础文档）：<https://docs.omniverse.nvidia.com/isaacsim/latest/index.html>
-Omniverse Code（Omniverse的开发环境IDE）：<https://docs.omniverse.nvidia.com/code/latest/index.html>
-Omniverse USDView（用于查看Omniverse场景内容）：<https://docs.omniverse.nvidia.com/usdview/latest/index.html>
-Omniverse USD Composer（用于组装、渲染、仿真大型的场景内容）：<https://docs.omniverse.nvidia.com/composer/latest/index.html>
-Omniverse Streaming Client（用于远程连接部署在远端网络上的Omniverse应用程序）：<https://docs.omniverse.nvidia.com/streaming-client/latest/index.html>
-Omniverse Farm（用于灵活部署和后台运行在服务器或者云上的工作流）：<https://docs.omniverse.nvidia.com/farm/latest/index.html>
+4. Nvidia Omniverse Foundation Applications官方文档<br>
+Omniverse Isaac Sim（该网址包含了所有Isaac Sim仿真的相关基础文档）：<https://docs.omniverse.nvidia.com/isaacsim/latest/index.html><br>
+Omniverse Code（Omniverse的开发环境IDE）：<https://docs.omniverse.nvidia.com/code/latest/index.html><br>
+Omniverse USDView（用于查看Omniverse场景内容）：<https://docs.omniverse.nvidia.com/usdview/latest/index.html><br>
+Omniverse USD Composer（用于组装、渲染、仿真大型的场景内容）：<https://docs.omniverse.nvidia.com/composer/latest/index.html><br>
+Omniverse Streaming Client（用于远程连接部署在远端网络上的Omniverse应用程序）：<https://docs.omniverse.nvidia.com/streaming-client/latest/index.html><br>
+Omniverse Farm（用于灵活部署和后台运行在服务器或者云上的工作流）：<https://docs.omniverse.nvidia.com/farm/latest/index.html><br>
 
-5. Nvidia Omniverse Dev官方文档
-Omniverse Developer Guide（该网址包含了Omniverse Dev的开发者文档）：<https://docs.omniverse.nvidia.com/dev-guide/latest/index.html>
-Omniverse Workflows（Omniverse平台的工作流介绍文档）：<https://docs.omniverse.nvidia.com/workflows/latest/index.html>
-Omniverse Utilities（实用程序以增强Omniverse的使用功能，如Cache，Drive）：<https://docs.omniverse.nvidia.com/utilities/latest/index.html>
-Omniverse Materials and Rendering（Omniverse场景内容的材质和渲染配置）：<https://docs.omniverse.nvidia.com/materials-and-rendering/latest/index.html>
-Omniverse Services（基于Kit及内置扩展用来构建微服务，并可部署在本地、服务器及云上）：<https://docs.omniverse.nvidia.com/services/latest/index.html>
-<https://www.nvidia.com/en-us/on-demand/session/omniverse2020-om1248/>（深入研究微服务专题介绍）
-<https://www.nvidia.com/en-us/on-demand/session/gtcspring21-s32071/> (为Omniverse构建微服务，可见附件中的PDF文档1)
-<https://www.nvidia.com/en-us/on-demand/session/gtcfall21-a31204/>（深入使用Omniverse构建微服务，可见附件中的PDF文档2）
-<https://github.com/NVIDIA-Omniverse/deep-dive-into-microservices>（官方GitHub仓库）
+5. Nvidia Omniverse Dev官方文档<br>
+Omniverse Developer Guide（该网址包含了Omniverse Dev的开发者文档）：<https://docs.omniverse.nvidia.com/dev-guide/latest/index.html><br>
+Omniverse Workflows（Omniverse平台的工作流介绍文档）：<https://docs.omniverse.nvidia.com/workflows/latest/index.html><br>
+Omniverse Utilities（实用程序以增强Omniverse的使用功能，如Cache，Drive）：<https://docs.omniverse.nvidia.com/utilities/latest/index.html><br>
+Omniverse Materials and Rendering（Omniverse场景内容的材质和渲染配置）：<https://docs.omniverse.nvidia.com/materials-and-rendering/latest/index.html><br>
+Omniverse Services（基于Kit及内置扩展用来构建微服务，并可部署在本地、服务器及云上）：<br>
+<https://docs.omniverse.nvidia.com/services/latest/index.html><br>
+<https://www.nvidia.com/en-us/on-demand/session/omniverse2020-om1248/>（深入研究微服务专题介绍）<br>
+<https://www.nvidia.com/en-us/on-demand/session/gtcspring21-s32071/> (为Omniverse构建微服务，可见附件中的PDF文档1)<br>
+<https://www.nvidia.com/en-us/on-demand/session/gtcfall21-a31204/>（深入使用Omniverse构建微服务，可见附件中的PDF文档2）<br>
+<https://github.com/NVIDIA-Omniverse/deep-dive-into-microservices>（官方GitHub仓库）<br>
 Omniverse Digital Twins（用于构建数字孪生仓库的例程）：<https://docs.omniverse.nvidia.com/digital-twins/latest/index.html>
 
-6. Appendix
+6. Appendix<br>
 [Building Microservices For Omniverse](https://github.com/JadeCong/Resources/blob/master/Documents/Nvidia/S32071-JozefvanEenbergen-NicBranker-BuildingMicroservicesForOmniverse_1617757618199001vlUt.pdf)<br>
 [Deep-dive-into-building-microservices-with-Omniverse](https://github.com/JadeCong/Resources/blob/master/Documents/Nvidia/GTC2021-A31204-Deep-dive-into-building-microservices-with-Omniverse.pdf)<br>
 
 ### 3.3 Nvidia Developer Center
 
-1. Nvidia Developer官方主网址
+1. Nvidia Developer官方主网址<br>
 该网址包含了所有开发者文档及资源（主要是面向各种软件的深度开发者的文档及资源）：<https://developer.nvidia.com/>
 
-2. Nvidia Omniverse 开发者官网
+2. Nvidia Omniverse 开发者官网<br>
 Omniverse 开发者官网（包括高阶教程及开发资源）：<https://developer.nvidia.com/omniverse>
 
-3. Nvidia Isaac Sim开发者官网
+3. Nvidia Isaac Sim开发者官网<br>
 Isaac Sim开发者官网（包括本地、云端、机器学习方面的教程及资源）：<https://developer.nvidia.com/isaac-sim>
 
-4. Nvidia Drive Sim开发者官网
-Nvidia Drive自动驾驶开发者官网（包括生态及多种周边资源）：<https://developer.nvidia.com/drive>
+4. Nvidia Drive Sim开发者官网<br>
+Nvidia Drive自动驾驶开发者官网（包括生态及多种周边资源）：<https://developer.nvidia.com/drive><br>
 Drive Sim开发者官网：<https://developer.nvidia.com/drive/simulation>
 
-5. Nvidia OpenUSD开发者官网
-USD开发者官网：<https://developer.nvidia.com/usd>
+5. Nvidia OpenUSD开发者官网<br>
+USD开发者官网：<https://developer.nvidia.com/usd><br>
 OpenUSD开发者官网：<https://developer.nvidia.com/usd/dev-program>
 
-6. Nvidia PhysX开发者官网
+6. Nvidia PhysX开发者官网<br>
 PhysX开发者官网（包括PhysX、Blast、Flow引擎）：<https://developer.nvidia.com/physx-sdk>
 
-7. Nvidia Omniverse Code开发者官网
+7. Nvidia Omniverse Code开发者官网<br>
 Omniverse Code开发者官网（用于Omniverse开发的IDE）：<https://developer.nvidia.com/omniverse/code-app>
 
-8. Nvidia Omniverse Replicator开发者官网
+8. Nvidia Omniverse Replicator开发者官网<br>
 Omniverse Replicator开发者官网（SDG合成数据生成用于加速计算机视觉相关网络训练）：<https://developer.nvidia.com/omniverse/replicator>
 
-9. Nvidia Quantum Computing开发者官网
+9. Nvidia Quantum Computing开发者官网<br>
 Quantum Computing开发者官网（混合量子计算开发）：<https://developer.nvidia.com/cuda-quantum>
 
-10. Nvidia Other Platforms
-NVIDIA Riva开发者官网（语音和翻译AI开发）：<https://developer.nvidia.com/riva>
-NVIDIA Maxine开发者官网（增强语音、视频及增强现实的开发）：<https://developer.nvidia.com/maxine>
-NVIDIA Merlin开发者官网（大规模推荐系统的开发）：<https://developer.nvidia.com/merlin>
+10. Nvidia Other Platforms<br>
+NVIDIA Riva开发者官网（语音和翻译AI开发）：<https://developer.nvidia.com/riva><br>
+NVIDIA Maxine开发者官网（增强语音、视频及增强现实的开发）：<https://developer.nvidia.com/maxine><br>
+NVIDIA Merlin开发者官网（大规模推荐系统的开发）：<https://developer.nvidia.com/merlin><br>
 NVIDIA TAO Toolkit开发者官网（网络大规模训练及优化部署的开发）：<https://developer.nvidia.com/tao-toolkit>
 
 ### 3.4 Nvidia Training Center
 
-1. Nvidia Training官网主网址
-该网址为Nvidia培训中心的主网址（EN）：<https://www.nvidia.com/en-us/training/>
+1. Nvidia Training官网主网址<br>
+该网址为Nvidia培训中心的主网址（EN）：<https://www.nvidia.com/en-us/training/><br>
 该网址为Nvidia培训中心的主网址（CN）：<https://www.nvidia.cn/training/>
 
-2. Nvidia Self-Paced Training
+2. Nvidia Self-Paced Training<br>
 该网址为Nvidia自学培训教程（学习路径见如下PDF附件）：<https://www.nvidia.com/en-us/training/online/>
 
-3. Nvidia Instructor-Led Workshops
+3. Nvidia Instructor-Led Workshops<br>
 该网址为Nvidia讲师指导的研讨会：<https://www.nvidia.com/en-us/training/instructor-led-workshops/>
 
-4. Nvidia Educator Programs
+4. Nvidia Educator Programs<br>
 该网址为Nvidia教育开发项目：<https://www.nvidia.com/en-us/training/educator-programs/>
 
-5. Nvidia Enterprise Solutions
+5. Nvidia Enterprise Solutions<br>
 该网址为Nvidia企业级解决方案案例：<https://www.nvidia.com/en-us/training/enterprise-solutions/>
 
-6. Nvidia Technical Resources
+6. Nvidia Technical Resources<br>
 该网址为Nvidia技术支持的相关资源：<https://www.nvidia.com/en-us/training/resources/>
 
-7. Appendix
+7. Appendix<br>
 [nvidia-learning-learning-path-developers-it-administrators](https://github.com/JadeCong/Resources/blob/master/Documents/Nvidia/nvidia-learning-learning-path-developers-it-administrators.pdf)
 
 ### 3.5 Nvidia Downloads Center
 
-1. Nvidia Downloads官网主网址
+1. Nvidia Downloads官网主网址<br>
 该网址为Nvidia资源（镜像、模型、应用等）下载中心的主网址：<https://developer.nvidia.com/downloads>
 
-2. Nvidia NGC Catalog网址
+2. Nvidia NGC Catalog网址<br>
 NGC Catalog网址（NGC（NVIDIA GPU CLOUD）是NVIDIA开发的一套深度学习生态系统，可以使开发者免费访问深度学习软件堆栈，建立适合深度学习的开发环境。目前NGC在阿里云gn5实例作了全面部署，并且在镜像市场提供了针对NVIDIA Pascal GPU优化的NGC容器镜像。）：<https://catalog.ngc.nvidia.com/?filters=&orderBy=weightPopularDESC&query=>
 
-3. Nvidia GPU Driver Docker镜像
+3. Nvidia GPU Driver Docker镜像<br>
 GPU Driver Docker镜像（用于配置Nvidia显卡驱动）：<https://catalog.ngc.nvidia.com/orgs/nvidia/containers/driver>
 
-4. Nvidia Omniverse Isaac Sim Docker镜像
+4. Nvidia Omniverse Isaac Sim Docker镜像<br>
 Isaac Sim Docker镜像（用于Headless模式运行）：<https://catalog.ngc.nvidia.com/orgs/nvidia/containers/isaac-sim>
 
-5. Nvidia GPT Model
+5. Nvidia GPT Model<br>
 GPT Model：<https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/megatron_gpt_345m>
 
-6. Nvidia Llama 2 Model
+6. Nvidia Llama 2 Model<br>
 Llama 2 Model：<https://catalog.ngc.nvidia.com/orgs/nvidia/teams/playground/models/llama2>
 
-7. Nvidia TAO Conversational AI Collection
+7. Nvidia TAO Conversational AI Collection<br>
 TAO Conversational AI Collection（用于对话AI的大规模预训练及部署）：<https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/collections/tao_conversationalai>
 
-8. Nvidia TAO Computer Vision Collection
+8. Nvidia TAO Computer Vision Collection<br>
 TAO Computer Vision Collection（用于计算机视觉领域的大规模预训练及部署）：<https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/collections/tao_computervision>
 
 ### 3.6 Nvidia Forums Center
 
-1. Nvidia Forums官网主网址
+1. Nvidia Forums官网主网址<br>
 该网址为Nvidia论坛官网（用于同其他开发者交流问题及咨询官方技术问题）的主网址：<https://forums.developer.nvidia.com/>
 
-2. Nvidia Omniverse论坛板块
+2. Nvidia Omniverse论坛板块<br>
 Omniverse论坛板块： <https://forums.developer.nvidia.com/c/omniverse/300>
 
-3. Nvidia Physics Simulation论坛板块
+3. Nvidia Physics Simulation论坛板块<br>
 Physics Simulation论坛板块：<https://forums.developer.nvidia.com/c/physics-simulation/442>
 
-4. Nvidia AI & Data Science论坛板块
+4. Nvidia AI & Data Science论坛板块<br>
 AI & Data Science论坛板块：<https://forums.developer.nvidia.com/c/ai-data-science/86>
 
-5. Nvidia Autonomous Machines论坛板块
+5. Nvidia Autonomous Machines论坛板块<br>
 Autonomous Machines论坛板块（机器人）：<https://forums.developer.nvidia.com/c/agx-autonomous-machines/55>
 
-6. Nvidia Autonomous Vehicles论坛板块
+6. Nvidia Autonomous Vehicles论坛板块<br>
 Autonomous Vehicles论坛板块（自动驾驶）：<https://forums.developer.nvidia.com/c/autonomous-vehicles/517>
 
-7. Nvidia Developer Tools论坛板块
+7. Nvidia Developer Tools论坛板块<br>
 Developer Tools论坛板块：<https://forums.developer.nvidia.com/c/developer-tools/106>
 
 ### 3.7 Nvidia Blogs Center
 
-1. Nvidia Blog官网主网址：
+1. Nvidia Blog官网主网址：<br>
 该网址为Nvidia博客官网（用于查看Nvidia最新的技术及产品动态）的主网址：<https://developer.nvidia.com/blog/>
 
-2. Nvidia Simulation-Modeling-Design Blog板块
+2. Nvidia Simulation-Modeling-Design Blog板块<br>
 Simulation-Modeling-Design Blog板块：<https://developer.nvidia.com/blog/category/simulation-modeling-design/>
 
-3. Nvidia Robotics Blog板块
+3. Nvidia Robotics Blog板块<br>
 Robotics Blog板块：<https://developer.nvidia.com/blog/category/robotics/>
 
-4. Nvidia Data Science Blog板块
+4. Nvidia Data Science Blog板块<br>
 Data Science Blog板块：<https://developer.nvidia.com/blog/category/data-science/>
 
-5. Nvidia Conversational AI Blog板块
+5. Nvidia Conversational AI Blog板块<br>
 Conversational AI Blog板块：<https://developer.nvidia.com/blog/category/conversational-ai/>
 
-6. Nvidia Cloud Blog板块
+6. Nvidia Cloud Blog板块<br>
 Cloud Blog板块：<https://developer.nvidia.com/blog/category/data-center-cloud/>
 
 ### 3.8 Unofficial Reference Resources
 
-1. Isaac Sim公开课教程
+1. Isaac Sim公开课教程<br>
 Isaac Sim B站教程：<https://www.bilibili.com/video/BV1EN4y1w7D5/?spm_id_from=333.337.search-card.all.click>
 
-2. Premake编译C++配置教程
+2. Premake编译C++配置教程<br>
 Premake编译C++配置教程：<https://premake.github.io/docs/>
 
-3. Packman编译工具教程
+3. Packman编译工具教程<br>
 Packman编译工具教程：<https://packman.readthedocs.io/en/latest/>
 
-4. Python Bindings(从Python调用C/C++)教程
-Python Bindings教程：
-<https://realpython.com/python-bindings-overview/>
+4. Python Bindings(从Python调用C/C++)教程<br>
+Python Bindings教程：<br>
+<https://realpython.com/python-bindings-overview/><br>
 <https://zhuanlan.zhihu.com/p/143356193>
 
 ---
